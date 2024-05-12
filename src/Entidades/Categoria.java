@@ -1,23 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entidades;
 
 import Conexion.Conexion;
-import Persistencia.Inventario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import Persistencia.InventarioInter;
 
 /**
  *
  * @author MI COMPUTADOR
  */
-public class Categoria implements Inventario {
-private int ID;
+public class Categoria implements InventarioInter {
+
+    private int ID;
     private String nombre;
     private String descripcion;
 
@@ -50,6 +46,7 @@ private int ID;
     public void setID(int ID) {
         this.ID = ID;
     }
+
     @Override
     public boolean registrarCat(Categoria objeto) {
         boolean respuesta = false;
@@ -72,6 +69,29 @@ private int ID;
         return respuesta;
     }
 
+    @Override
+    public boolean eliminar(int id) {
+        boolean respuesta = false;
+        Connection cn = Conexion.conectar();
+        try {
+            PreparedStatement consulta = cn.prepareStatement("DELETE FROM categoria WHERE id = ?");
+            consulta.setInt(1, id);
+
+            int filasAfectadas = consulta.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("CATEGORIA ELIMINADA");
+                imprimir();
+                respuesta = true;
+            } else {
+                System.out.println("ESE ID NO EXISTE");
+            }
+            cn.close();
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar la categoría: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return respuesta;
+    }
 
     @Override
     public boolean registrarProd(Producto objeto) {
@@ -87,13 +107,13 @@ private int ID;
         try {
             consulta = cn.prepareStatement("SELECT * FROM categoria");
             boolean hayResultados = consulta.execute();
-   
+
             if (hayResultados) {
                 resultSet = consulta.getResultSet(); // Obtener el ResultSet
 
                 // Imprimir encabezados
                 System.out.println("--------------------------------------------------");
-System.out.printf("| %-10s | %-20s | %-20s | %-10s |\n", "ID", "Nombre", "Descripción", "Stock");
+                System.out.printf("| %-10s | %-20s | %-15s | %-10s |\n", "ID", "Nombre", "Descripcion", "Stock");
                 System.out.println("--------------------------------------------------");
 
                 // Imprimir datos de los clientes
@@ -101,8 +121,8 @@ System.out.printf("| %-10s | %-20s | %-20s | %-10s |\n", "ID", "Nombre", "Descri
                     int ID = resultSet.getInt("ID");
                     String nombre = resultSet.getString("nombre");
                     String descripcion = resultSet.getString("descripcion");
-                      int Stock = resultSet.getInt("Stock");
-    System.out.printf("| %-10d | %-20s | %-20s | %-10d |\n",ID, nombre, descripcion,Stock);
+                    String stock = resultSet.getString("stock");
+                    System.out.printf("| %-10d | %-20s | %-15s | %-10s |\n", ID, nombre, descripcion, stock);
 
                 }
 
@@ -128,33 +148,28 @@ System.out.printf("| %-10s | %-20s | %-20s | %-10s |\n", "ID", "Nombre", "Descri
                 e.printStackTrace();
             }
         }
+
     }
+
+   
 
     @Override
-    public boolean eliminar(Categoria objeto) {
-        boolean respuesta = false;
-        Connection cn = Conexion.conectar();
+    public boolean editarC(Categoria cat) {
+
         try {
-            PreparedStatement consulta = cn.prepareStatement("DELETE FROM categoria WHERE id = ?");
+            Connection conexion = Conexion.conectar();
+            PreparedStatement consulta = conexion.prepareStatement("UPDATE categoria SET nombre = ?, descripcion = ? WHERE id = ?");
+            consulta.setString(1, cat.getNombre());
+            consulta.setString(2, cat.getDescripcion());
+            consulta.setInt(3, cat.getID());
 
-            consulta.setInt(1, objeto.getID());
-            imprimir();
-            if (consulta.executeUpdate() > 0) {
-                respuesta = true;
-                System.out.println("CATEGORIA ELIMINADA");
-                imprimir();
-            } else {
-
-                System.out.println("NO SE ENCONTRO CATEGORIA CON ESE ID");
-            }
-            cn.close();
+            consulta.executeUpdate();
+            consulta.close();
+            conexion.close();
+            return true;
         } catch (SQLException e) {
-            System.out.println("Error al eliminar la categoria: " + e.getMessage());
             e.printStackTrace();
-
+            return false;
         }
-        return respuesta;
-
     }
-
 }

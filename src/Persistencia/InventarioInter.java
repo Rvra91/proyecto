@@ -13,18 +13,17 @@ import java.util.Set;
  *
  * @author MI COMPUTADOR
  */
-public interface Inventario {
-    
-    
+public interface InventarioInter {
+
     public boolean registrarCat(Categoria objeto);
-    
+
     public boolean registrarProd(Producto objeto);
-    
-    
+
     public void imprimir();
 
-    
-    public boolean eliminar(Categoria objeto);
-    
-    
+    public boolean eliminar(int id);
+
+  
+
+    public boolean editarC(Categoria cat);
 }
