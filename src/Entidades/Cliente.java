@@ -18,10 +18,7 @@ import java.sql.ResultSet;
  */
 public class Cliente extends Persona {
 
-    @Override
-    public double registrarVenta(Producto pr, double Precio) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  
 
     @Override
     public boolean registrarCliente(Cliente objeto) {
@@ -124,4 +121,27 @@ public class Cliente extends Persona {
 
     }
 
+    @Override
+    public boolean verificarCliente(Cliente objeto) {
+   
+
+    try (Connection cn = Conexion.conectar();
+         PreparedStatement consulta = cn.prepareStatement("SELECT COUNT(*) AS total FROM clientes WHERE id = ?")) {
+        consulta.setInt(1, objeto.getID());
+        try (ResultSet resultado = consulta.executeQuery()) {
+            return resultado.next() && resultado.getInt("total") > 0;
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al verificar si existe el cliente: " + e.getMessage());
+        e.printStackTrace();
+        return false;
+    }
+
+
+    
+    
+    }
+
+    
+    
 }

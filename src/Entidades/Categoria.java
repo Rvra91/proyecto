@@ -5,13 +5,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import Persistencia.InventarioInter;
+import Persistencia.CategoriaInter;
 
 /**
  *
  * @author MI COMPUTADOR
  */
-public class Categoria implements InventarioInter {
+public class Categoria implements CategoriaInter {
 
     private int ID;
     private String nombre;

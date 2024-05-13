@@ -4,10 +4,23 @@
  */
 package Persistencia;
 
+import Entidades.Categoria;
+
 /**
  *
  * @author Ramon
  */
-public interface CategoriaInterfaces {
-    
+public interface CategoriaInter {
+      public boolean registrarCat(Categoria objeto);
+
+
+
+    public void imprimir();
+
+    public boolean eliminar(int id);
+
+  
+
+    public boolean editarC(Categoria cat);
+
 }

@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Persistencia/Inventario.java</file>
+            <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Persistencia/InventarioInter.java</file>
             <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Entidades/Categoria.java</file>
+            <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Entidades/ProductoAbs.java</file>
             <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Presentacion/Menu.java</file>
-            <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Presentacion/Main.java</file>
-            <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Persistencia/InterfaceCliente.java</file>
-            <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Entidades/Cliente.java</file>
             <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Entidades/Producto.java</file>
-            <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Entidades/Persona.java</file>
+            <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Entidades/Venta.java</file>
+            <file>file:/C:/Users/redol/Desktop/ProyectoAula/ProyectoAula/src/Persistencia/VentaInter.java</file>
         </group>
     </open-files>
 </project-private>

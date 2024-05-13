@@ -5,7 +5,6 @@
 package Entidades;
 
 import Conexion.Conexion;
-import Persistencia.InventarioInter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +14,7 @@ import java.sql.SQLException;
  *
  * @author Ramon
  */
-public abstract class ProductoAbs implements InventarioInter {
+public abstract class ProductoAbs {
 
     private int id;
     private String nombre;

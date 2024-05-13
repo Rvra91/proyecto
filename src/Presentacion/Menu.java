@@ -2,6 +2,7 @@ package Presentacion;
 
 import Entidades.Categoria;
 import Entidades.Cliente;
+import Entidades.Inventario;
 import Entidades.Producto;
 import Entidades.Venta;
 import java.util.Scanner;
@@ -12,9 +13,11 @@ public class Menu {
         Cliente c = new Cliente();
         Categoria cat = new Categoria();
         Producto p = new Producto();
+        Inventario i = new Inventario();
         Venta v = new Venta();
         int id;
         int eleccion3 = 0;
+
         Scanner scanner = new Scanner(System.in);
         while (eleccion != 7) {
             eleccion = 0;
@@ -108,9 +111,37 @@ public class Menu {
                                 break;
 
                             case 2:
-
+                                int e = 0;
                                 cat.imprimir();
+                                System.out.println("Indique el ID De la categoria a editar");
+                                id = scanner.nextInt();
+                                cat.setID(id);
+                                System.out.println("Que desea hacer?\n"
+                                        + "1: Cambiar Nombre y Descripcion\n"
+                                        + "2: Eliminar\n"
+                                        + "3: Regresar");
+                                e = scanner.nextInt();
+                                if (e == 1) {
+                                    System.out.println("Ingrese nombre");
+                                    nombre = scanner.nextLine();
+                                    nombre = scanner.nextLine();
+                                    cat.setNombre(nombre);
+                                    System.out.println("Ingrese La Descripcion");
 
+                                    descripcion = scanner.nextLine();
+                                    cat.setDescripcion(descripcion);
+                                    cat.editarC(cat);
+                                } else if (e == 2) {
+
+                                    cat.eliminar(id);
+
+                                } else if (e == 3) {
+
+                                } else if (e <= 1 || e >= 3) {
+
+                                    System.out.println("OPCION INVALIDA");
+                                    break;
+                                }
                                 break;
 
                             case 3:
@@ -280,6 +311,13 @@ public class Menu {
                     break;
 
                 case 4:
+                    i.imprimir();
+                    System.out.println("Que desea hacer? ");
+                    
+                    System.out.println("1: Informe de un producto");
+                    System.out.println("2: Informe de todos los productos");
+                    
+                    
                     break;
 
                 case 5:
@@ -292,26 +330,57 @@ public class Menu {
                     id = scanner.nextInt();
 
                     v.setId_pr(id);
-
+                    System.out.println("Cuantos desea vender?");
+                    int stock = scanner.nextInt();
+                    v.setStock(stock);
                     eleccion2 = 0;
 
                     while (eleccion2 != 1 && eleccion2 != 2) {
                         System.out.println("1:Hacer venta a un cliente\n"
                                 + "2:Hacer venta libre");
                         eleccion2 = scanner.nextInt();
-
+                        String tipo = "";
                         switch (eleccion2) {
 
                             case 1:
                                 System.out.println("Ingresar ID Del cliente");
                                 c.imprimirCliente();
                                 id = scanner.nextInt();
+
+                                c.verificarCliente(c);
+                                c.setID(id);
+
+                                if (!c.verificarCliente(c)) {
+
+                                    System.out.println("NO EXISTE CLIENTE CON ESE ID");
+                                    break;
+                                }
                                 v.setCliente(id);
 
                                 System.out.println("Ingrese el tipo de pago");
+                                System.out.println("1: Nequi");
+                                System.out.println("2: Transferencia");
+                                System.out.println("3: Efectivo");
 
-                                String tipo = scanner.nextLine();
-                                tipo = scanner.nextLine();
+                                int e = scanner.nextInt();
+
+                                if (e == 1) {
+
+                                    tipo = "Nequi";
+                                } else if (e == 2) {
+
+                                    tipo = "Transferencia";
+                                } else if (e == 3) {
+
+                                    tipo = "Efectivo";
+
+                                } else if (e <= 1 || e >= 3) {
+
+                                    System.out.println("Opcion no valida");
+                                    break;
+                                }
+
+                                System.out.println(tipo);
                                 v.setTipo(tipo);
 
                                 System.out.println("Ingresar Dinero");
@@ -320,15 +389,36 @@ public class Menu {
 
                                 v.setDinero(dinero);
                                 v.procesarVenta(v);
-                                
-                                v.generarFactura();
+
+                                System.out.println(id);
+                                v.generarFactura(id);
                                 break;
 
                             case 2:
                                 System.out.println("Ingrese el tipo de pago");
+                                System.out.println("1: Nequi");
+                                System.out.println("2: Transferencia");
+                                System.out.println("3: Efectivo");
 
-                                tipo = scanner.nextLine();
-                                tipo = scanner.nextLine();
+                                e = scanner.nextInt();
+
+                                if (e == 1) {
+
+                                    tipo = "Nequi";
+                                } else if (e == 2) {
+
+                                    tipo = "Transferencia";
+                                } else if (e == 3) {
+
+                                    tipo = "Efectivo";
+
+                                } else if (e <= 1 || e >= 3) {
+
+                                    System.out.println("Opcion no valida");
+                                    break;
+                                }
+
+                                System.out.println(tipo);
                                 v.setTipo(tipo);
 
                                 System.out.println("Ingresar Dinero");
@@ -337,36 +427,36 @@ public class Menu {
 
                                 v.setDinero(dinero);
                                 v.ventaLibre(v);
-v.generarFactura();
+                                v.generarFactura(id);
                                 break;
                         }
 
                     }
-              
-                    
-                    
+
                     break;
-                      case 6:
-                          v.verVentas(v);
-                          
-                          System.out.println("Que desea hacer");
-                          System.out.println("1: Informe de una venta");
-                          System.out.println("2: Generar Informe de todas");
-                          
-                          eleccion2=0;
-                          switch (eleccion2){
-                              
-                              
-                              
-                              case 1:
-                                  
-                                  break;
-                              case 2: 
-                                  v.generarInforme();   
-                                  break;
-                              case 3: break;
-                              default: System.out.println("Opcion invalida"); break;
-                          }
+                case 6:
+                    v.verVentas(v);
+
+                    System.out.println("Que desea hacer");
+                  /*  System.out.println("1: Informe de una venta");
+                    System.out.println("2: Generar Informe de todas");
+
+                    eleccion2 = 0;
+                    eleccion2=scanner.nextInt();
+                    switch (eleccion2) {
+
+                        case 1:
+
+                            break;
+                        case 2:
+                            v.generarInforme();
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            System.out.println("Opcion invalida");
+                            break;
+                    }*/
                     break;
             }
 

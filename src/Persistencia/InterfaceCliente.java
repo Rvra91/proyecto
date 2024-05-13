@@ -5,22 +5,18 @@
 package Persistencia;
 
 import Entidades.Cliente;
-import Entidades.Producto;
+
 
 /**
  *
  * @author MI COMPUTADOR
  */
-public interface InterfaceCliente  {
-    
-    public double registrarVenta(Producto pr, double Precio);
-    
-    
+public interface InterfaceCliente {
+boolean verificarCliente(Cliente objeto);
     public boolean registrarCliente(Cliente objeto);
-    
+
     public void imprimirCliente();
-    
+
     public boolean eliminarCliente(Cliente objeto);
-    
-    
+
 }

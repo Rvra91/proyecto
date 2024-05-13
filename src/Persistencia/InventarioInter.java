@@ -4,26 +4,16 @@
  */
 package Persistencia;
 
-import Entidades.Categoria;
-import Entidades.Categoria;
-import Entidades.Producto;
-import java.util.Set;
 
 /**
  *
  * @author MI COMPUTADOR
  */
 public interface InventarioInter {
-
-    public boolean registrarCat(Categoria objeto);
-
-
-
-    public void imprimir();
-
-    public boolean eliminar(int id);
-
   
 
-    public boolean editarC(Categoria cat);
+    public void imprimir();
+    
+
+
 }

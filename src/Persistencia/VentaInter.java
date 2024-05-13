@@ -12,7 +12,7 @@ public interface VentaInter {
 
     void ventaLibre(Venta objeto);
 
-    void generarFactura();
+    void generarFactura(int objeto);
 
     void verVentas(Venta objeto);
 
