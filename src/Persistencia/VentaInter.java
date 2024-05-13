@@ -4,10 +4,17 @@
  */
 package Persistencia;
 
-/**
- *
- * @author Ramon
- */
-public interface Venta {
-    
+import Entidades.Venta;
+
+public interface VentaInter {
+
+    void procesarVenta(Venta objeto);
+
+    void ventaLibre(Venta objeto);
+
+    void generarFactura();
+
+    void verVentas(Venta objeto);
+
+    void generarInforme();
 }

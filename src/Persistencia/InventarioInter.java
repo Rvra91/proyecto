@@ -17,7 +17,7 @@ public interface InventarioInter {
 
     public boolean registrarCat(Categoria objeto);
 
-    public boolean registrarProd(Producto objeto);
+
 
     public void imprimir();
 

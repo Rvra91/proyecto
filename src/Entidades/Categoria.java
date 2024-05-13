@@ -93,10 +93,7 @@ public class Categoria implements InventarioInter {
         return respuesta;
     }
 
-    @Override
-    public boolean registrarProd(Producto objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 
     @Override
     public void imprimir() {

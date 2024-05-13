@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * @author Ramon
  */
 public abstract class ProductoAbs implements InventarioInter {
-     
+
     private int id;
     private String nombre;
     private String descripcion;
@@ -72,16 +72,15 @@ public abstract class ProductoAbs implements InventarioInter {
         this.id_categoria = id_categoria;
     }
 
-    
     public boolean editarP(Producto objeto) {
-          try {
+        try {
             Connection conexion = Conexion.conectar();
             PreparedStatement consulta = conexion.prepareStatement("UPDATE producto SET nombre = ?, descripcion = ?,stock=?,precio=? WHERE id = ?");
             consulta.setString(1, objeto.getNombre());
-               consulta.setString(2, objeto.getDescripcion());
-                           consulta.setInt(3, objeto.getStock());
+            consulta.setString(2, objeto.getDescripcion());
+            consulta.setInt(3, objeto.getStock());
             consulta.setDouble(4, objeto.getPrecio());
-consulta.setInt(5, objeto.getId());
+            consulta.setInt(5, objeto.getId());
             consulta.executeUpdate();
             consulta.close();
             conexion.close();
@@ -90,9 +89,9 @@ consulta.setInt(5, objeto.getId());
             e.printStackTrace();
             return false;
         }
-      }
-      
-       public boolean registrarProd(Producto objeto) {
+    }
+
+    public boolean registrarProd(Producto objeto) {
         boolean respuesta = false;
         Connection cn = Conexion.conectar();
 
@@ -145,5 +144,5 @@ consulta.setInt(5, objeto.getId());
         }
         return respuesta;
     }
-      
+
 }
